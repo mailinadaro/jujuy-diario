@@ -1,27 +1,25 @@
-import React from 'react';
 import { MainContainer } from '@/components/layout/MainContainer';
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-12 text-sm">
-      <MainContainer className="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded bg-amber-500 flex items-center justify-center text-slate-950 font-bold">
-            <i className="fa-solid fa-car-side text-sm"></i>
-          </div>
-          <div>
-            <span className="text-white font-bold tracking-tight block leading-tight">ADARO VIAJES</span>
-            <span className="text-[10px] text-amber-400 tracking-widest uppercase">CHOFER PRIVADO · JUJUY</span>
-          </div>
+    <footer className="bg-slate-950 border-t border-slate-900 text-slate-400 py-8 text-xs tracking-wide">
+      <MainContainer className="flex flex-col items-center gap-2 text-center">
+  
+        <div className="text-slate-500 font-light leading-tight">
+          Diseñado y desarrollado por{' '}
+          <a 
+            href="https://www.linkedin.com/in/mailinadaro/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-slate-300 hover:text-amber-400 transition-colors font-normal underline underline-offset-4 decoration-slate-800 hover:decoration-amber-400/50"
+          >
+            Mailin Adaro
+          </a>
         </div>
-        <p className="text-xs text-center md:text-left">
-          © 2026 Adaro Viajes. San Salvador de Jujuy, Argentina. Todos los derechos reservados.
-        </p>
-        <div className="flex space-x-6 text-xs">
-          <a href="#beneficios" className="hover:text-amber-400 transition-colors">Servicio</a>
-          <a href="#cobertura" className="hover:text-amber-400 transition-colors">Cobertura</a>
-          <a href="#faq" className="hover:text-amber-400 transition-colors">Preguntas Frecuentes</a>
-        </div>
+        <span className="text-slate-500 font-light leading-tight">
+          Adaro Viajes © 2026 Todos los derechos reservados.
+        </span>
+
       </MainContainer>
     </footer>
   );

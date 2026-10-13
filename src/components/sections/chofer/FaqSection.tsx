@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export const FaqSection = () => {
   const [openId, setOpenId] = useState<number | null>(null);
@@ -16,30 +17,34 @@ export const FaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-slate-100 border-t border-slate-200">
+    <section id="faq" className="py-24 bg-slate-100 border-t border-slate-200">
       <MainContainer className="space-y-12">
-        <SectionHeader 
-          eyebrow="Dudas habituales" 
-          title="Preguntas frecuentes"
-          description="Todo lo que necesitás saber antes de coordinar tus traslados."
-        />
+        <ScrollReveal>
+          <SectionHeader 
+            eyebrow="Dudas habituales" 
+            title="Preguntas frecuentes"
+            description="Todo lo que necesitás saber antes de coordinar tus traslados."
+          />
+        </ScrollReveal>
 
         <div className="max-w-4xl mx-auto space-y-4">
-          {faqs.map((faq) => (
-            <div key={faq.id} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <button 
-                onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center focus:outline-none cursor-pointer"
-              >
-                <span>{faq.q}</span>
-                <i className={`fa-solid fa-chevron-down text-amber-600 transition-transform ${openId === faq.id ? 'rotate-180' : ''}`}></i>
-              </button>
-              {openId === faq.id && (
-                <div className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                  {faq.a}
-                </div>
-              )}
-            </div>
+          {faqs.map((faq, idx) => (
+            <ScrollReveal key={faq.id} delay={idx * 0.1}>
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <button 
+                  onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
+                  className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center focus:outline-none cursor-pointer"
+                >
+                  <span>{faq.q}</span>
+                  <i className={`fa-solid fa-chevron-down text-amber-600 transition-transform ${openId === faq.id ? 'rotate-180' : ''}`}></i>
+                </button>
+                {openId === faq.id && (
+                  <div className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </MainContainer>
