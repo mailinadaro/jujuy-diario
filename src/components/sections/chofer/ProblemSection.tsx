@@ -13,7 +13,7 @@ export const ProblemSection = () => {
   ];
 
   return (
-    <section id="problema" className="py-24 bg-white">
+    <section id="problema" className="py-24 lg:py-32 bg-white">
       <MainContainer>
         {/* Encabezado animado */}
         <ScrollReveal>
@@ -28,12 +28,12 @@ export const ProblemSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {problems.map((p, idx) => (
             <ScrollReveal key={idx} delay={idx * 0.1} className={p.span || ''}>
-              <div className="bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all h-full">
-                <div className="w-12 h-12 bg-slate-200 text-slate-800 rounded-xl flex items-center justify-center text-xl mb-6">
+              <div className="bg-slate-50 border border-slate-200/80 hover:border-amber-500/40 p-8 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300 h-full">
+                <div className="w-12 h-12 bg-slate-200/80 text-slate-800 rounded-xl flex items-center justify-center text-xl mb-6 shadow-xs">
                   <i className={`fa-solid ${p.icon}`}></i>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{p.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{p.desc}</p>
+                <h3 className="text-lg font-medium text-slate-900 mb-2">{p.title}</h3>
+                <p className="text-slate-600 font-light text-sm leading-relaxed">{p.desc}</p>
               </div>
             </ScrollReveal>
           ))}

@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
@@ -8,17 +7,15 @@ interface HeroProps {
 }
 
 export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
-  const openWhatsApp = () => {
-    const text = encodeURIComponent(
-      "Hola, quiero consultar por el servicio de chofer privado.\n" +
-      "Mi barrio de origen es: \n" +
-      "Mi destino laboral es: \n" +
-      "Mi horario de ingreso es: \n" +
-      "Mi horario de salida es: \n" +
-      "¿Podrían confirmarme si tienen cobertura y pasarme una tarifa?"
-    );
-    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-  };
+  const text = encodeURIComponent(
+    "Hola, quiero consultar por el servicio de chofer privado.\n" +
+    "Mi barrio de origen es: \n" +
+    "Mi destino laboral es: \n" +
+    "Mi horario de ingreso es: \n" +
+    "Mi horario de salida es: \n" +
+    "¿Podrían confirmarme si tienen cobertura y pasarme una tarifa?"
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
 
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center text-white overflow-hidden">
@@ -52,13 +49,15 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
           </p>
 
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={openWhatsApp} 
-              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-3 text-base cursor-pointer"
+            <a 
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-3 text-base cursor-pointer"
             >
               <i className="fa-brands fa-whatsapp text-2xl"></i>
               <span>Consultar mi recorrido por WhatsApp</span>
-            </button>
+            </a>
           </div>
 
           <p className="text-xs text-slate-400 font-light tracking-wide pt-2">

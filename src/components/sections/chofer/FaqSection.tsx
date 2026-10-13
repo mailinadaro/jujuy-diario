@@ -17,7 +17,7 @@ export const FaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-slate-100 border-t border-slate-200">
+    <section id="faq" className="py-24 lg:py-32 bg-slate-100 border-t border-slate-200">
       <MainContainer className="space-y-12">
         <ScrollReveal>
           <SectionHeader 
@@ -30,16 +30,16 @@ export const FaqSection = () => {
         <div className="max-w-4xl mx-auto space-y-4">
           {faqs.map((faq, idx) => (
             <ScrollReveal key={faq.id} delay={idx * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+              <div className="bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl overflow-hidden shadow-xs transition-colors">
                 <button 
                   onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                  className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center focus:outline-none cursor-pointer"
+                  className="w-full p-6 text-left font-medium text-base sm:text-lg text-slate-900 flex justify-between items-center focus:outline-none cursor-pointer gap-4"
                 >
                   <span>{faq.q}</span>
-                  <i className={`fa-solid fa-chevron-down text-amber-600 transition-transform ${openId === faq.id ? 'rotate-180' : ''}`}></i>
+                  <i className={`fa-solid fa-chevron-down text-amber-600 text-sm transition-transform duration-300 shrink-0 ${openId === faq.id ? 'rotate-180' : ''}`}></i>
                 </button>
                 {openId === faq.id && (
-                  <div className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-6 pb-6 text-sm text-slate-600 font-light leading-relaxed border-t border-slate-100 pt-4">
                     {faq.a}
                   </div>
                 )}

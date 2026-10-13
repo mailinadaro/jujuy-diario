@@ -15,7 +15,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
     <div className="fixed bottom-6 right-6 z-50">
       <button 
         onClick={openWhatsApp} 
-        className="bg-[#25D366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform hover:scale-110 focus:outline-none cursor-pointer" 
+        className="bg-[#25D366] hover:bg-[#22bf5b] text-white w-14 h-14 rounded-full shadow-2xl shadow-emerald-950/60 ring-1 ring-white/25 flex items-center justify-center text-3xl transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none cursor-pointer" 
         aria-label="Consultar por WhatsApp"
       >
         <i className="fa-brands fa-whatsapp"></i>

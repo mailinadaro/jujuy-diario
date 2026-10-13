@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
@@ -8,10 +7,8 @@ interface CtaProps {
 }
 
 export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
-  const openWhatsApp = () => {
-    const text = encodeURIComponent("Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.");
-    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-  };
+  const text = encodeURIComponent("Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
 
   return (
     <section className="relative py-28 lg:py-36 text-white text-center overflow-hidden">
@@ -41,13 +38,15 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
         </p>
 
         <div className="pt-4">
-          <button 
-            onClick={openWhatsApp} 
-            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-4 rounded-xl shadow-xl transition-all inline-flex items-center space-x-3 text-lg cursor-pointer"
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium px-8 py-4 rounded-xl shadow-xl transition-all inline-flex items-center space-x-3 text-lg cursor-pointer"
           >
             <i className="fa-brands fa-whatsapp text-2xl"></i>
             <span>Consultar disponibilidad por WhatsApp</span>
-          </button>
+          </a>
         </div>
       </MainContainer>
     </section>
