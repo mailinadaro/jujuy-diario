@@ -5,50 +5,43 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export const FounderSection = () => {
   return (
-    <section id="quien-te-lleva" className="py-24 bg-slate-100 border-y border-slate-200">
-      <MainContainer>
-        <ScrollReveal>
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="text-amber-600 font-semibold text-sm uppercase tracking-wider block mb-3">Quién te lleva</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
-              Sergio, más de 30 años haciendo traslados.
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg font-light leading-relaxed">
-              Trabajó años trasladando personal de empresas y también turistas por Jujuy. Conoce la ciudad, los horarios del centro y lo que significa llegar a tiempo todos los días.
-            </p>
-          </div>
-        </ScrollReveal>
+    <section id="quien-te-lleva" className="relative min-h-[80vh] flex items-center py-28 lg:py-36 text-white overflow-hidden">
+      {/* Fondo editorial con imagen inmersiva */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="/chofer02.jpg" 
+          alt="Sergio, chofer de Adaro Viajes, junto al vehículo del servicio." 
+          fill 
+          className="object-cover object-center brightness-60 scale-105 transform duration-1000"
+        />
+        {/* Gradiente asimétrico para oscurecer más a la derecha y dejar libre la izquierda */}
+        <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-950/60 to-slate-950/90"></div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto bg-white p-8 sm:p-12 rounded-2xl border border-slate-200 shadow-sm">
-          <div className="lg:col-span-5 relative h-80 rounded-xl overflow-hidden shadow-md">
-            <Image 
-              src="/chofer02.jpg" 
-              alt="Sergio, chofer de Adaro Viajes, junto al vehículo del servicio." 
-              fill 
-              className="object-cover"
-            />
-          </div>
-          <div className="lg:col-span-7 space-y-6">
-            <h3 className="text-xl font-bold text-slate-900">Detalles del servicio</h3>
-            <div className="space-y-4 text-sm text-slate-700">
-              <div className="flex items-center space-x-3 bg-slate-50 p-3.5 rounded-lg border border-slate-100">
-                <i className="fa-solid fa-car text-amber-600 text-lg w-6"></i>
-                <div>
-                  <span className="font-semibold text-slate-900 block">Vehículo:</span>
-                  <span className="text-slate-600">Fiat Cronos 2024</span>
-                </div>
+      <MainContainer className="relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Espacio libre a la izquierda para que se luzca esa zona de la foto */}
+          <div className="hidden lg:block lg:col-span-6"></div>
+
+          {/* Columna de contenido ubicada en el lateral derecho */}
+          <div className="lg:col-span-6 text-left space-y-6">
+            <ScrollReveal>
+              <div className="space-y-4 bg-slate-950/70 p-8 sm:p-10 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-2xl">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-slate-900/90 text-amber-400 border border-amber-500/30 shadow-sm">
+                  <i className="fa-solid fa-user-tie"></i> Quién te lleva
+                </span>
+                
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-tight">
+                  Sergio, más de 30 años <br className="hidden sm:inline" />
+                  <span className="font-normal text-white">haciendo traslados.</span>
+                </h2>
+
+                <p className="text-slate-200 text-base sm:text-lg font-light leading-relaxed pt-2">
+                  Trabajó años trasladando personal de empresas y también turistas por Jujuy. Conoce la ciudad, los horarios del centro y lo que significa llegar a tiempo todos los días.
+                </p>
               </div>
-              <div className="flex items-center space-x-3 bg-slate-50 p-3.5 rounded-lg border border-slate-100">
-                <i className="fa-solid fa-shield-halved text-amber-600 text-lg w-6"></i>
-                <div>
-                  <span className="font-semibold text-slate-900 block">Seguro:</span>
-                  <span className="text-slate-600">Vigente con cobertura completa para pasajeros</span>
-                </div>
-              </div>
-            </div>
-            <p className="text-xs text-slate-500 italic">
-              Trato directo, confianza y puntualidad garantizada en cada jornada laboral.
-            </p>
+            </ScrollReveal>
           </div>
         </div>
       </MainContainer>
