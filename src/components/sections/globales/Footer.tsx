@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import data from '@/data/chofer-privado.json';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
-const whatsappNumber = data.whatsapp.replace(/\D/g, '');
-const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
+const whatsappUrl = buildWhatsAppUrl(whatsappMessage, data.whatsapp);
 
 export const Footer = () => {
   return (
@@ -47,7 +47,7 @@ export const Footer = () => {
                 {data.whatsapp}
               </a>
             </p>
-            <p className="text-slate-500 font-light"><span className='font-medium'>Atención:</span> Lunes a Viernes de 9 a 13 hs y de 15 a 21 hs</p>
+            <p className="text-slate-500 font-light"><span className='font-medium'>Atención:</span> Lunes a viernes de 9 a 13 h y de 15 a 21 h</p>
           </div>
 
         </div>

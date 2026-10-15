@@ -3,26 +3,34 @@ import React, { useState } from 'react';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 export const FaqSection = () => {
   const [openIds, setOpenIds] = useState<Set<number>>(() => new Set([1, 2]));
 
   const faqs = [
-    { id: 1, q: '¿Cuánto cuesta el servicio?', a: 'Cobramos por semana, según el plan: Plan 2 viajes diarios, de $60 mil a $80 mil pesos; Plan 4 viajes diarios (horario cortado), de $120 mil a $160 mil pesos. Valores a Octubre-Noviembre 2026. Te confirmamos el monto exacto por WhatsApp antes de empezar.' }, // TODO: completar precios y mes/año.
-    { id: 2, q: '¿Qué barrios están cubiertos?', a: 'Si el tuyo no figura, escribinos.' }, // TODO: completar la lista de barrios.
-    { id: 3, q: '¿Puedo contratar traslados de ida y vuelta?', a: 'Sí. El Plan 2 viajes diarios incluye ida y vuelta, y el Plan 4 viajes diarios cubre además el horario cortado. Se coordina según tus horarios, dentro de nuestro horario de trabajo (9 a 13 hs y 15 a 21 hs).' },
-    { id: 4, q: '¿Puedo coordinar viajes de lunes a viernes?', a: 'Sí, el servicio está pensado para días laborales. No se presta servicio los sábados.' }, // TODO: confirmar la disponibilidad de los sábados.
-    { id: 5, q: '¿Qué pasa si tengo un horario laboral cortado?', a: 'Para eso está el Plan 4 viajes diarios: ida a la mañana, vuelta al mediodía, ida de regreso y vuelta a la tarde, siempre dentro de 9 a 13 hs y de 15 a 21 hs. Se confirma según disponibilidad.' },
+    { id: 1, q: '¿Cuánto cuesta el servicio?', a: 'Cobramos por semana, según el plan: Plan 2 viajes diarios, de $60 mil a $80 mil pesos; Plan 4 viajes diarios (horario cortado), de $120 mil a $160 mil pesos. Valores a Octubre-Noviembre 2026. Te confirmamos el monto exacto por WhatsApp antes de empezar.' },
+    {
+      id: 2,
+      q: '¿Qué barrios están cubiertos?',
+      a: 'Cubrimos barrios organizados en 3 zonas, con tarifa por zona. Mirá la lista completa y el mapa detallado en Tarifas y Zonas. Si el tuyo no figura, escribinos y evaluamos tu recorrido.',
+      href: '#zonas-cobertura',
+      linkText: 'Ver lista de barrios y mapa en Tarifas y Zonas'
+    },
+    { id: 3, q: '¿Puedo contratar traslados de ida y vuelta?', a: 'Sí. El Plan 2 viajes diarios incluye ida y vuelta, y el Plan 4 viajes diarios cubre además el horario cortado. Se coordina según tus horarios, dentro de nuestro horario de trabajo (9 a 13 h y 15 a 21 h).' },
+    { id: 4, q: '¿Puedo coordinar viajes de lunes a viernes?', a: 'Sí, el servicio está pensado para días laborales. No se presta servicio los sábados.' },
+    { id: 5, q: '¿Qué pasa si tengo un horario laboral cortado?', a: 'Para eso está el Plan 4 viajes diarios: ida a la mañana, vuelta al mediodía, ida de regreso y vuelta a la tarde, siempre dentro de 9 a 13 h y de 15 a 21 h. Se confirma según disponibilidad.' },
     {
       id: 6,
       q: '¿Hacen traslados fijos que no sean laborales?',
-      a: 'Sí, siempre que sean recorridos recurrentes y entren en nuestra agenda (lunes a viernes, de 9 a 13 y de 15 a 21 hs). Contanos qué necesitás, con qué frecuencia y en qué horario, y te confirmamos por WhatsApp si podemos cubrirlo y cuánto cuesta.',
-      href: 'https://wa.me/+543516149222?text=Hola%2C%20quiero%20consultar%20un%20traslado%20fijo%20recurrente.%20Motivo%3A%20%E2%80%A6%20Origen%20y%20destino%3A%20%E2%80%A6%20D%C3%ADas%20y%20horarios%3A%20%E2%80%A6',
+      a: 'Sí, siempre que sean recorridos recurrentes y entren en nuestra agenda (lunes a viernes, de 9 a 13 h y de 15 a 21 h). Contanos qué necesitás, con qué frecuencia y en qué horario, y te confirmamos por WhatsApp si podemos cubrirlo y cuánto cuesta.',
+      href: buildWhatsAppUrl('Hola Sergio, quiero consultar un traslado fijo recurrente.\n\nMotivo: \nOrigen y destino: \nDías y horarios: '),
+      linkText: 'Consultar otro traslado fijo por WhatsApp'
     },
-    { id: 7, q: '¿Cómo confirmo si hay disponibilidad?', a: 'Escribinos por WhatsApp con tu barrio, tu destino y tus horarios. Revisamos nuestra agenda y te respondemos en el día.' }, // TODO: confirmar el plazo de respuesta.
-    { id: 8, q: '¿Qué pasa si un día no viajo?', a: 'Avisanos con 24hs horas de anticipación y ese día se descuenta o reprograma.' }, // TODO: definir anticipación y política aplicable.
-    { id: 9, q: '¿Cómo y cuándo pago?', a: 'Forma de pago: transferencia. Se abona por semana adelantada.' }, // TODO: definir medios y momento de pago.
-    { id: 10, q: '¿El vehículo tiene seguro?', a: 'Sí. El Fiat Cronos 2024 cuenta con seguro vigente.' } // TODO: completar el tipo de cobertura.
+    { id: 7, q: '¿Cómo confirmo si hay disponibilidad?', a: 'Escribinos por WhatsApp con tu barrio, tu destino y tus horarios. Revisamos nuestra agenda y te respondemos en el día.' },
+    { id: 8, q: '¿Qué pasa si un día no viajo?', a: 'Avisanos con 24 horas de anticipación y ese día se descuenta o reprograma.' },
+    { id: 9, q: '¿Cómo y cuándo pago?', a: 'Forma de pago: transferencia. Se abona por semana adelantada.' },
+    { id: 10, q: '¿El vehículo tiene seguro?', a: 'Sí. El Fiat Cronos 2024 cuenta con seguro vigente.' }
   ];
 
   return (
@@ -67,11 +75,11 @@ export const FaqSection = () => {
                     {faq.href && (
                       <a
                         href={faq.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={faq.href.startsWith('http') ? '_blank' : undefined}
+                        rel={faq.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                         className="mt-4 inline-flex min-h-11 items-center text-amber-600 underline underline-offset-4 transition-colors hover:text-amber-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
                       >
-                        Consultar otro traslado fijo
+                        {faq.linkText || 'Consultar más información'}
                       </a>
                     )}
                   </div>

@@ -1,15 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 interface CtaProps {
-  whatsappNumber: string;
+  whatsappNumber?: string;
 }
 
-const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
+const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
 
 export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = buildWhatsAppUrl(whatsappMessage, whatsappNumber);
 
   return (
     <section className="relative py-28 lg:py-36 text-white text-center overflow-hidden">
@@ -17,7 +18,7 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
       <div className="absolute inset-0 z-0">
         <Image 
           src="/autoFiat.jpg" 
-          alt="Paisaje de Jujuy y rutas" 
+          alt="Fiat Cronos 2024 del servicio de Adaro Viajes" 
           fill 
           className="object-cover object-center brightness-50"
         />
@@ -26,8 +27,13 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
       </div>
 
       <MainContainer className="relative z-10 space-y-8 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-slate-900/80 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-sm">
-          <i className="fa-solid fa-compass"></i> Da el primer paso
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-slate-900/80 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-sm">
+            <i className="fa-solid fa-compass"></i> Da el primer paso
+          </div>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-light bg-slate-900/80 text-slate-200 border border-slate-700/80 backdrop-blur-md shadow-sm">
+            <i className="fa-solid fa-car text-amber-400"></i> Fiat Cronos 2024, con seguro vigente
+          </div>
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-light tracking-tight leading-tight">

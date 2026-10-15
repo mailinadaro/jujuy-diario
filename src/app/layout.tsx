@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.adaroviajes.com"),
@@ -20,10 +26,10 @@ export const metadata: Metadata = {
     locale: "es_AR",
     images: [
       {
-        url: "/heroCronos03.png",
-        width: 1672,
-        height: 940,
-        alt: "Chofer privado en San Salvador de Jujuy",
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Adaro Viajes - Chofer privado en San Salvador de Jujuy",
       },
     ],
   },
@@ -31,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chofer privado en Jujuy para ir al centro | Adaro Viajes",
     description: "Chofer privado para ir y volver del centro de San Salvador de Jujuy, con horario fijo y tarifa semanal acordada. Consultá tu recorrido por WhatsApp.",
-    images: ["/heroCronos03.png"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,

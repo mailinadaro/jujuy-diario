@@ -1,14 +1,17 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 interface WhatsAppButtonProps {
-  whatsappNumber: string;
+  whatsappNumber?: string;
 }
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }) => {
   const [footerVisible, setFooterVisible] = useState(false);
-  const text = encodeURIComponent("Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.");
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
+  const whatsappUrl = buildWhatsAppUrl(
+    "Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.",
+    whatsappNumber
+  );
   const whatsappColors = {
     '--whatsapp-green': '#25D366',
     '--whatsapp-green-hover': '#1EBE5D',

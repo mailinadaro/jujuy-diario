@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 interface CoverageProps {
   whatsappNumber?: string;
@@ -149,9 +150,10 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
   }, [isModalOpen]);
 
   // Mensaje y URL dinámico e inteligente según la zona y modalidad seleccionada
-  const smartWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hola Sergio, quiero consultar disponibilidad para el ${currentPlanLabel} en ${activeZone.name} (${currentWeeklyPrice}/semana). Mi barrio o dirección exacta es: `
-  )}`;
+  const smartWhatsappUrl = buildWhatsAppUrl(
+    `Hola Sergio, quiero consultar disponibilidad para el ${currentPlanLabel} en ${activeZone.name} (${currentWeeklyPrice}/semana). Mi barrio o dirección exacta es: `,
+    whatsappNumber
+  );
 
   /**
    * Renderiza el visor cartográfico limpio
@@ -254,7 +256,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
 
         {/* Leyenda sutil al pie del mapa */}
         <p className="text-[11px] text-slate-400 font-light text-center pt-2 px-2">
-          💡 Tocá cualquier pin en el mapa o cambiá de pestaña arriba para explorar cada zona.
+          Cambiá de pestaña arriba para ver los barrios y la tarifa de cada zona. Tocá “Ampliar mapa” para verlo más grande.
         </p>
       </div>
     );
@@ -380,15 +382,42 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                           {activeZone.priceUnit} hacia el centro (lunes a viernes)
                         </span>
                       </div>
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-300 bg-slate-950/90 p-3 rounded-xl border border-slate-700/60">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                          <span className="text-slate-400 font-normal">Tarifa semanal fija:</span>
-                          <strong className="text-white text-sm font-semibold">{currentWeeklyPrice}</strong>
-                        </div>
-                        <span className="text-[11px] text-amber-400/90 font-medium">
-                          {planMode === '2trips' ? '10 viajes (ida y vuelta)' : '20 viajes (horario cortado)'}
-                        </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-slate-950/90 p-2.5 rounded-xl border border-slate-700/60">
+                        <button
+                          type="button"
+                          onClick={() => setPlanMode('2trips')}
+                          className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
+                            planMode === '2trips'
+                              ? 'border-amber-500/80 bg-slate-900/90 ring-1 ring-amber-500/40 shadow-xs'
+                              : 'border-slate-800/80 bg-slate-950/40 hover:border-slate-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-slate-400 text-[11px] mb-1">
+                            <span className="font-medium text-slate-300">Plan 2 viajes/día</span>
+                            <span className="text-[10px] text-slate-500">Ida y vuelta</span>
+                          </div>
+                          <div className="text-white font-bold text-sm">
+                            {activeZone.priceWeekly2Trips} <span className="text-[10px] font-normal text-slate-400">/sem</span>
+                          </div>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setPlanMode('4trips')}
+                          className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
+                            planMode === '4trips'
+                              ? 'border-amber-500/80 bg-slate-900/90 ring-1 ring-amber-500/40 shadow-xs'
+                              : 'border-slate-800/80 bg-slate-950/40 hover:border-slate-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-slate-400 text-[11px] mb-1">
+                            <span className="font-medium text-slate-300">Plan 4 viajes/día</span>
+                            <span className="text-[10px] text-slate-500">Horario cortado</span>
+                          </div>
+                          <div className="text-white font-bold text-sm">
+                            {activeZone.priceWeekly4Trips} <span className="text-[10px] font-normal text-slate-400">/sem</span>
+                          </div>
+                        </button>
                       </div>
                     </div>
                   </div>

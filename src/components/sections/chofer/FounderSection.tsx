@@ -7,10 +7,10 @@ export const FounderSection = () => {
   return (
     <section id="quien-te-lleva" className="relative min-h-[85vh] flex items-center py-20 lg:py-36 bg-slate-950 lg:bg-transparent text-white overflow-hidden">
       {/* En desktop: fondo editorial inmersivo a pantalla completa con Sergio a la izquierda */}
-      <div className="hidden lg:block absolute inset-0 z-0">
+      <div className="hidden lg:block absolute inset-0 z-0" aria-hidden="true">
         <Image 
           src="/chofer02.jpg" 
-          alt="Sergio, chofer de Adaro Viajes, junto al vehículo del servicio." 
+          alt="" 
           fill 
           priority
           sizes="100vw"
@@ -30,7 +30,7 @@ export const FounderSection = () => {
           {/* Columna de contenido */}
           <div className="lg:col-span-6 xl:col-span-5 text-left space-y-6">
             <ScrollReveal>
-              {/* En Mobile: Foto de Sergio nítida y destacada arriba del texto para generar confianza inmediata */}
+              {/* En Mobile: Foto de Sergio nítida y destacada arriba del texto */}
               <div className="block lg:hidden relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl mb-6">
                 <Image
                   src="/chofer02.jpg"
@@ -42,10 +42,10 @@ export const FounderSection = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-slate-200">
                   <span className="font-medium bg-slate-900/90 px-3 py-1 rounded-md border border-slate-700 text-[11px]">
-                    Sergio • Chofer Titular
+                    Sergio · Chofer Titular
                   </span>
-                  <span className="bg-amber-500 text-slate-950 font-bold px-2.5 py-0.5 rounded text-[11px] shadow-sm">
-                    +30 años de experiencia
+                  <span className="bg-slate-900/90 text-amber-400 font-medium px-2.5 py-1 rounded-md border border-amber-500/30 text-[11px]">
+                    Fiat Cronos 2024
                   </span>
                 </div>
               </div>
@@ -70,7 +70,10 @@ export const FounderSection = () => {
                     <i className="fa-solid fa-shield-halved text-amber-400"></i> Trato personal y directo
                   </span>
                   <span className="bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                    <i className="fa-solid fa-clock text-amber-400"></i> Puntualidad garantizada
+                    <i className="fa-solid fa-clock text-amber-400"></i> Conoce la ciudad y sus horarios
+                  </span>
+                  <span className="bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                    <i className="fa-solid fa-car text-amber-400"></i> Fiat Cronos 2024 con seguro al día
                   </span>
                 </div>
               </div>

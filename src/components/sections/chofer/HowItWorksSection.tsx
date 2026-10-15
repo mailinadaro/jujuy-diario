@@ -2,20 +2,21 @@ import React from 'react';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 interface HowItWorksProps {
-  whatsappNumber: string;
+  whatsappNumber?: string;
 }
 
 export const HowItWorksSection: React.FC<HowItWorksProps> = ({ whatsappNumber }) => {
   const steps = [
     { num: 1, icon: 'fa-map-location-dot', title: 'Contanos tu recorrido', desc: 'Escribinos por WhatsApp con tu barrio, la dirección de tu trabajo y tus horarios.' },
     { num: 2, icon: 'fa-clipboard-check', title: 'Verificamos disponibilidad', desc: 'Revisamos si podemos cubrir tu trayecto con nuestra agenda. Te respondemos en el día.' }, // TODO: definir el tiempo de respuesta.
-    { num: 3, icon: 'fa-handshake', title: 'Recibís tu tarifa', desc: 'Si el servicio es viable, te pasamos el valor exacto y coordinamos el primer viaje.' }
+    { num: 3, icon: 'fa-handshake', title: 'Confirmamos tu tarifa', desc: 'Confirmamos tu tarifa según tu zona y coordinamos el primer viaje.' }
   ];
 
-  const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
+  const whatsappUrl = buildWhatsAppUrl(whatsappMessage, whatsappNumber);
 
   return (
     <section id="como-funciona" className="py-24 lg:py-32 bg-white border-t border-slate-100">

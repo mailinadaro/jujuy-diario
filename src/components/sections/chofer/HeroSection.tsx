@@ -2,14 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
+
 interface HeroProps {
-  whatsappNumber: string;
+  whatsappNumber?: string;
 }
 
-const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
+const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
 
 export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = buildWhatsAppUrl(whatsappMessage, whatsappNumber);
 
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center text-white overflow-hidden">
@@ -43,7 +45,7 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {['Lunes a viernes', 'Ida y vuelta', 'Tarifa semanal fija', '+30 años de experiencia en traslados'].map((pill) => (
+            {['Lunes a viernes', 'Ida y vuelta', 'Desde $60.000 por semana', '+30 años de experiencia en traslados'].map((pill) => (
               <span
                 key={pill}
                 className="rounded-full border border-slate-300/40 bg-slate-900/70 px-3 py-2 text-xs font-light text-slate-100 backdrop-blur-md"
@@ -69,7 +71,7 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
           {/* Cupos limitados por recorrido. */}
           {/* TODO: activar esta frase solo si los cupos son realmente limitados. */}
           <p className="text-xs text-slate-200 font-light tracking-wide pt-2">
-            Atendemos de 9 a 13 hs y de 15 a 21 hs.
+            Horario de traslados: 9 a 13 h y de 15 a 21 h.
           </p>
         </div>
       </MainContainer>
