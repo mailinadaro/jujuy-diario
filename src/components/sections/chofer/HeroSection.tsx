@@ -27,7 +27,7 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
         />
         {/* Capas de gradiente editorial para asegurar legibilidad impecable y estilo de revista de alta gama */}
         <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-[2px]"></div>
-        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/1 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-950/50 to-transparent"></div>
       </div>
 
       <MainContainer className="relative z-10 pt-32 pb-24 sm:pt-36 sm:pb-28 lg:pt-40 lg:pb-32 w-full">
