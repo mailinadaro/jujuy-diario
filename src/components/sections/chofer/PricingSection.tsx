@@ -43,7 +43,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
   
 
   return (
-    <section id="precio" className="py-24 bg-white">
+    <section id="tarifas" className="py-24 bg-white">
       <MainContainer>
         <ScrollReveal>
           <SectionHeader 

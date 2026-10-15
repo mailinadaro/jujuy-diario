@@ -32,6 +32,7 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
     { label: 'Beneficios', href: '#beneficios' },
     { label: 'Cómo funciona', href: '#como-funciona' },
     { label: 'Quién te lleva', href: '#quien-te-lleva' },
+    { label: 'Tarifas', href: '#tarifas' },
     { label: 'Cobertura', href: '#cobertura' },
     { label: 'Preguntas', href: '#faq' },
   ];

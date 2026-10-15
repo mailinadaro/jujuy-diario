@@ -47,13 +47,13 @@ export const Footer = () => {
                 {data.whatsapp}
               </a>
             </p>
-            <p className="text-slate-500 font-light"><span className='font-medium'>Atención:</span> Lunea a Viernes de 9 a 13 hs y de 15 a 21 hs</p>
+            <p className="text-slate-500 font-light"><span className='font-medium'>Atención:</span> Lunes a Viernes de 9 a 13 hs y de 15 a 21 hs</p>
           </div>
 
         </div>
 
         {/* Línea Inferior: Copyright, Políticas y Créditos en una sola línea */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center text-slate-500 font-light text-[11px]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-1 text-center text-slate-500 font-light text-[11px]">
           <p>© 2026 Adaro Viajes. Todos los derechos reservados.</p>
           
           <div>
