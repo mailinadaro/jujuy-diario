@@ -16,13 +16,13 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
       {/* Fondo de alta gama con imagen de territorio y gradientes editoriales */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/heroCronos02.png" 
+          src="/autoFiat.jpg" 
           alt="Paisaje de Jujuy y rutas" 
           fill 
           className="object-cover object-center brightness-50"
         />
         <div className="absolute inset-0 bg-slate-950/10 backdrop-blur-[2px]"></div>
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/1 to-slate-950/80"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/1 to-slate-900/5"></div>
       </div>
 
       <MainContainer className="relative z-10 space-y-8 max-w-4xl mx-auto">

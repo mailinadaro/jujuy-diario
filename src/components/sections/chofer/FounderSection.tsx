@@ -16,7 +16,7 @@ export const FounderSection = () => {
           className="object-cover object-[20%_25%] sm:object-[15%_center] lg:object-left brightness-90 duration-1000"
         />
         {/* Gradiente refinado: en desktop oscurece hacia la derecha para dar contraste al texto y deja libre el retrato a la izquierda; en mobile gradiente vertical */}
-        <div className="absolute inset-0 bg-slate-950/30"></div>
+        <div className="absolute inset-0 bg-slate-950/10"></div>
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/40 to-transparent lg:bg-linear-to-r lg:from-transparent lg:via-slate-950/10 lg:to-slate-950/40"></div>
       </div>
 

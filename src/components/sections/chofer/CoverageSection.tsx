@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
@@ -6,10 +7,7 @@ interface CoverageProps {
   whatsappNumber: string;
 }
 
-export const CoverageSection: React.FC<CoverageProps> = ({ whatsappNumber }) => {
-  const text = encodeURIComponent('Hola, quiero verificar si mi barrio tiene cobertura y consultar tarifa.');
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
-
+export const CoverageSection: React.FC<CoverageProps> = () => {
   return (
     <section id="cobertura" className="scroll-mt-24 py-24 lg:py-32 bg-slate-900 text-white">
       <MainContainer>
@@ -27,23 +25,14 @@ export const CoverageSection: React.FC<CoverageProps> = ({ whatsappNumber }) => 
           </div>
           <div className="lg:col-span-6">
             <ScrollReveal delay={0.2}>
-              <div className="bg-slate-800 border border-slate-700/80 p-8 sm:p-10 rounded-2xl shadow-xl space-y-6">
-                <p className="text-sm text-slate-300 font-light leading-relaxed border-l-2 border-amber-500 pl-4 bg-slate-900/80 py-3 pr-3 rounded-r-lg">
-                  La cobertura se limita a recorridos compatibles con la operación del servicio. No incluimos zonas periféricas. Las direcciones y los horarios se confirman por WhatsApp.
-                </p>
-                {/* TODO: bloque de barrios cubiertos con mapa (se agrega después; no renderizar nada hasta tener la lista) */}
-                <div className="pt-2">
-                  <a 
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Verificar mi barrio por WhatsApp"
-                    className="w-full min-h-11 bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-medium py-3.5 px-6 rounded-xl transition-all flex items-center justify-center space-x-2 text-sm shadow cursor-pointer"
-                  >
-                    <i className="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Verificar mi barrio</span>
-                  </a>
-                </div>
+              <div className="relative h-80 overflow-hidden rounded-2xl border border-slate-700/80 shadow-xl sm:h-96">
+                <Image
+                  src="/fiat02.jpg"
+                  alt="Fiat Cronos de Adaro Viajes"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
             </ScrollReveal>
           </div>

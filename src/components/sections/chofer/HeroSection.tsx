@@ -24,8 +24,8 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
           className="object-cover object-center scale-105 transform duration-1000" 
         />
         {/* Capas de gradiente editorial para asegurar legibilidad impecable y estilo de revista de alta gama */}
-        <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[2px]"></div>
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/5 to-transparent"></div>
+        <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/1 to-transparent"></div>
       </div>
 
       <MainContainer className="relative z-10 pt-32 pb-24 sm:pt-36 sm:pb-28 lg:pt-40 lg:pb-32 w-full">
@@ -34,11 +34,11 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
             <i className="fa-solid fa-location-dot"></i> San Salvador de Jujuy
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] drop-shadow-[0_3px_5px_rgba(0,0,0,0.85)]">
             Tu día laboral, sin el estrés del centro.
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
             Chofer privado para ir y volver del centro de Jujuy, con horario fijo y tarifa acordada. Llegás tranquilo, sin dar vueltas buscando dónde estacionar.
           </p>
 
