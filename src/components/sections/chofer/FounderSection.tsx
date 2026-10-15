@@ -9,7 +9,7 @@ export const FounderSection = () => {
       {/* Fondo editorial con imagen inmersiva */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/chofer03.jpg" 
+          src="/chofer02.jpg" 
           alt="Sergio, chofer de Adaro Viajes, junto al vehículo del servicio." 
           fill 
           priority

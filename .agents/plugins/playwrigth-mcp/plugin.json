@@ -1,0 +1,8 @@
+{
+  "id": "playwright-mcp",
+  "name": "Playwright Automation Server",
+  "version": "1.0.0",
+  "description": "Permite al agente interactuar con el navegador local a través de Playwright",
+  "type": "mcp",
+  "entrypoint": "mcp_config.json"
+}

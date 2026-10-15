@@ -52,8 +52,8 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
     <header 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 text-white ${
         isScrolled 
-          ? 'bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 shadow-xl py-3' 
-          : 'bg-linear-to-b from-slate-950/80 via-slate-950/30 to-transparent border-b border-white/5 py-5'
+          ? 'bg-slate-950/90 backdrop-blur-md shadow-xl py-3' 
+          : 'bg-linear-to-b from-slate-950/80 via-slate-950/30 to-transparent py-5'
       }`}
     >
       <MainContainer className="flex items-center justify-between">
