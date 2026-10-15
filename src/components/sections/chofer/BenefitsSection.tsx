@@ -5,9 +5,9 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export const BenefitsSection = () => {
   const benefits = [
-    { icon: 'fa-calendar-days', title: '1. Horarios coordinados', desc: 'Organizá tus traslados con anticipación y constancia, adaptados a tus entradas y salidas según disponibilidad operativa.' },
-    { icon: 'fa-file-invoice-dollar', title: '2. Tarifa acordada previamente', desc: 'Conocé el precio exacto de tu recorrido antes de confirmar cada semana, sin sorpresas ni tarifas variables imprevistas.' },
-    { icon: 'fa-comments', title: '3. Atención directa', desc: 'Resolvé tus consultas ágilmente por WhatsApp, con trato personalizado, claro y sin aplicaciones complejas ni esperas.' }
+    { icon: 'fa-calendar-days', title: 'Horario fijo, sin sorpresas', desc: 'Coordinamos con anticipación tus horarios de entrada y salida, y se mantienen cada semana.' },
+    { icon: 'fa-file-invoice-dollar', title: 'Sabés cuánto gastás antes de empezar la semana', desc: 'Acordamos la tarifa antes de empezar. Sin variaciones por demanda ni sorpresas.' },
+    { icon: 'fa-comments', title: 'Hablás directo con quien te lleva', desc: 'Todo se resuelve por WhatsApp, con trato personal y sin intermediarios ni aplicaciones.' }
   ];
 
   return (
@@ -16,8 +16,8 @@ export const BenefitsSection = () => {
         <ScrollReveal>
           <SectionHeader 
             eyebrow="Beneficios clave" 
-            title="Una forma más organizada de llegar a tu trabajo."
-            description="Priorizamos la previsibilidad, el confort y una relación directa sin intermediarios."
+            title="Una forma más tranquila de llegar a tu trabajo."
+            description="Pensado para que sepas cuándo salís, cuánto pagás y con quién hablás."
           />
         </ScrollReveal>
 

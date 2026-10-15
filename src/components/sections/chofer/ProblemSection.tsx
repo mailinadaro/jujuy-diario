@@ -19,7 +19,7 @@ export const ProblemSection = () => {
       icon: 'fa-arrows-split-up-and-left', 
       title: 'Idas y vueltas por el horario cortado', 
       // TODO: Contá acá si coordinan también ese tramo.
-      desc: 'Si cerrás al mediodía y volvés a la tarde, manejás el doble. [Contá acá si coordinan también ese tramo.]' 
+      desc: 'Si cerrás al mediodía y volvés a la tarde, manejás el doble.' 
     }
   ];
 

@@ -59,7 +59,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
               <div className={`bg-slate-50 border ${p.popular ? 'border-amber-500 shadow-md ring-1 ring-amber-500' : 'border-slate-200'} p-8 rounded-2xl flex flex-col justify-between h-full relative`}>
                 {p.popular && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 font-bold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full shadow-sm">
-                    Más consultado
+                    Día completo
                   </span>
                 )}
                 <div>

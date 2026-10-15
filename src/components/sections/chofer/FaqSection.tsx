@@ -8,15 +8,15 @@ export const FaqSection = () => {
   const [openId, setOpenId] = useState<number | null>(null);
 
   const faqs = [
-    { id: 1, q: '¿Cuánto cuesta el servicio?', a: 'Cobramos por semana, según el plan: Plan 2 viajes diarios, de $[X] a $[X]; Plan 4 viajes diarios (horario cortado), de $[X] a $[X]. Valores a [mes y año]. Te confirmamos el monto exacto por WhatsApp antes de empezar.' }, // TODO: completar precios y mes/año.
+    { id: 1, q: '¿Cuánto cuesta el servicio?', a: 'Cobramos por semana, según el plan: Plan 2 viajes diarios, de $60 mil a $80 il; Plan 4 viajes diarios (horario cortado), de $120 a $160. Valores a Octubre-Noviembre 2026. Te confirmamos el monto exacto por WhatsApp antes de empezar.' }, // TODO: completar precios y mes/año.
     { id: 2, q: '¿Qué barrios están cubiertos?', a: '[Lista de barrios.] Si el tuyo no figura, escribinos y te anotamos en la lista de espera.' }, // TODO: completar la lista de barrios.
-    { id: 3, q: '¿Puedo contratar traslados de ida y vuelta?', a: 'Sí. El Plan 2 viajes diarios incluye ida y vuelta, y el Plan 4 viajes diarios cubre además el horario cortado. Se coordina según tus horarios, dentro de nuestro horario de trabajo (9 a 13 h y 15 a 21 h).' },
-    { id: 4, q: '¿Puedo coordinar viajes de lunes a viernes?', a: '[Sí, el servicio está pensado para días laborales. Los sábados se consultan según disponibilidad.]' }, // TODO: confirmar la disponibilidad de los sábados.
-    { id: 5, q: '¿Qué pasa si tengo un horario laboral cortado?', a: 'Para eso está el Plan 4 viajes diarios: ida a la mañana, vuelta al mediodía, ida de regreso y vuelta a la tarde, siempre dentro de 9 a 13 h y de 15 a 21 h. Se confirma según disponibilidad.' },
-    { id: 6, q: '¿Cómo confirmo si hay disponibilidad?', a: 'Escribinos por WhatsApp con tu barrio, tu destino y tus horarios. Revisamos nuestra agenda y te respondemos [en el día].' }, // TODO: confirmar el plazo de respuesta.
-    { id: 7, q: '¿Qué pasa si un día no viajo?', a: '[Avisanos con X horas de anticipación y ese día se (descuenta / reprograma).]' }, // TODO: definir anticipación y política aplicable.
-    { id: 8, q: '¿Cómo y cuándo pago?', a: '[Forma de pago: transferencia / efectivo.] Se abona por semana, [adelantada / al finalizar la semana].' }, // TODO: definir medios y momento de pago.
-    { id: 9, q: '¿El vehículo tiene seguro?', a: 'Sí. El Fiat Cronos 2024 cuenta con seguro vigente [tipo de cobertura].' } // TODO: completar el tipo de cobertura.
+    { id: 3, q: '¿Puedo contratar traslados de ida y vuelta?', a: 'Sí. El Plan 2 viajes diarios incluye ida y vuelta, y el Plan 4 viajes diarios cubre además el horario cortado. Se coordina según tus horarios, dentro de nuestro horario de trabajo (9 a 13 hs y 15 a 21 hs).' },
+    { id: 4, q: '¿Puedo coordinar viajes de lunes a viernes?', a: 'Sí, el servicio está pensado para días laborales. No se presta servicio los sábados.' }, // TODO: confirmar la disponibilidad de los sábados.
+    { id: 5, q: '¿Qué pasa si tengo un horario laboral cortado?', a: 'Para eso está el Plan 4 viajes diarios: ida a la mañana, vuelta al mediodía, ida de regreso y vuelta a la tarde, siempre dentro de 9 a 13 hs y de 15 a 21 hs. Se confirma según disponibilidad.' },
+    { id: 6, q: '¿Cómo confirmo si hay disponibilidad?', a: 'Escribinos por WhatsApp con tu barrio, tu destino y tus horarios. Revisamos nuestra agenda y te respondemos en el día.' }, // TODO: confirmar el plazo de respuesta.
+    { id: 7, q: '¿Qué pasa si un día no viajo?', a: 'Avisanos con 24hs horas de anticipación y ese día se descuenta o reprograma).' }, // TODO: definir anticipación y política aplicable.
+    { id: 8, q: '¿Cómo y cuándo pago?', a: '[Forma de pago: transferencia / efectivo.] Se abona por semana adelantada.' }, // TODO: definir medios y momento de pago.
+    { id: 9, q: '¿El vehículo tiene seguro?', a: 'Sí. El Fiat Cronos 2024 cuenta con seguro vigente.' } // TODO: completar el tipo de cobertura.
   ];
 
   return (
