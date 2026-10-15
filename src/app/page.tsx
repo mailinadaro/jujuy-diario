@@ -8,7 +8,6 @@ import { CoverageSection } from '@/components/sections/chofer/CoverageSection';
 import { FounderSection } from '@/components/sections/chofer/FounderSection';
 import { Zones } from '@/components/sections/chofer/Zones';
 import { PricingSection } from '@/components/sections/chofer/PricingSection';
-import { OtherTransfersSection } from '@/components/sections/chofer/OtherTransfersSection';
 import { FaqSection } from '@/components/sections/chofer/FaqSection';
 import { CtaSection } from '@/components/sections/chofer/CtaSection';
 import { Footer } from '@/components/sections/globales/Footer';
@@ -26,7 +25,7 @@ export default function Page() {
       <HowItWorksSection whatsappNumber={whatsappNumber} />
       <CoverageSection whatsappNumber={whatsappNumber} />
       <FounderSection />
-      <Zones/>
+      <Zones whatsappNumber={whatsappNumber} />
       <PricingSection whatsappNumber={whatsappNumber} />
       <FaqSection />
       <CtaSection whatsappNumber={whatsappNumber} />
