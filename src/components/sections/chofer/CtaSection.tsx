@@ -31,9 +31,6 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-slate-900/80 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-sm">
             <i className="fa-solid fa-compass"></i> Da el primer paso
           </div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-light bg-slate-900/80 text-slate-200 border border-slate-700/80 backdrop-blur-md shadow-sm">
-            <i className="fa-solid fa-car text-amber-400"></i> Fiat Cronos 2024, con seguro vigente
-          </div>
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-light tracking-tight leading-tight">
