@@ -1,93 +1,48 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface WhatsAppButtonProps {
   whatsappNumber: string;
 }
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }) => {
-  const [heroPassed, setHeroPassed] = useState(false);
-  const [otherWhatsAppVisible, setOtherWhatsAppVisible] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const hero = document.querySelector('main > section');
-    let fallbackScrollHandler: (() => void) | undefined;
-    let heroObserver: IntersectionObserver | undefined;
-
-    if (hero) {
-      heroObserver = new IntersectionObserver(([entry]) => {
-        setHeroPassed(!entry.isIntersecting);
-      });
-      heroObserver.observe(hero);
-    } else {
-      fallbackScrollHandler = () => setHeroPassed(window.scrollY > 300);
-      fallbackScrollHandler();
-      window.addEventListener('scroll', fallbackScrollHandler, { passive: true });
-    }
-
-    const visibleWhatsAppLinks = new Set<Element>();
-    const whatsAppObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleWhatsAppLinks.add(entry.target);
-        } else {
-          visibleWhatsAppLinks.delete(entry.target);
-        }
-      });
-      setOtherWhatsAppVisible(visibleWhatsAppLinks.size > 0);
-    });
-
-    document.querySelectorAll<HTMLAnchorElement>('a[href*="wa.me"]').forEach((link) => {
-      if (
-        link !== buttonRef.current &&
-        !link.closest('header, nav, footer')
-      ) {
-        whatsAppObserver.observe(link);
-      }
-    });
-
-    const footer = document.querySelector('footer');
-    const footerObserver = footer
-      ? new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting))
-      : undefined;
-    if (footer && footerObserver) {
-      footerObserver.observe(footer);
-    }
-
-    return () => {
-      heroObserver?.disconnect();
-      whatsAppObserver.disconnect();
-      footerObserver?.disconnect();
-      if (fallbackScrollHandler) {
-        window.removeEventListener('scroll', fallbackScrollHandler);
-      }
-    };
-  }, []);
-
   const text = encodeURIComponent("Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
-  const isVisible = heroPassed && !otherWhatsAppVisible && !footerVisible;
   const whatsappColors = {
     '--whatsapp-green': '#25D366',
     '--whatsapp-green-hover': '#1EBE5D',
   } as React.CSSProperties;
 
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+
+    if (!footer) {
+      return;
+    }
+
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      setFooterVisible(entry.isIntersecting);
+    });
+
+    footerObserver.observe(footer);
+
+    return () => footerObserver.disconnect();
+  }, []);
+
   return (
     <a
-      ref={buttonRef}
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp a Adaro Viajes"
-      aria-hidden={!isVisible}
-      tabIndex={isVisible ? 0 : -1}
       style={whatsappColors}
+      aria-hidden={footerVisible}
+      tabIndex={footerVisible ? -1 : 0}
       className={`group fixed right-4 bottom-[calc(16px+env(safe-area-inset-bottom,0px))] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--whatsapp-green)] text-white shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-[var(--whatsapp-green-hover)] focus-visible:bg-[var(--whatsapp-green-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none md:right-6 md:bottom-6 ${
-        isVisible
-          ? 'visible translate-y-0 opacity-100 pointer-events-auto'
-          : 'invisible translate-y-2 opacity-0 pointer-events-none'
+        footerVisible
+          ? 'invisible translate-y-2 opacity-0 pointer-events-none'
+          : 'visible translate-y-0 opacity-100 pointer-events-auto'
       }`}
     >
       <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white shadow-lg md:group-hover:block md:group-focus-visible:block">

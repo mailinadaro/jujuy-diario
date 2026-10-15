@@ -49,7 +49,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
           <SectionHeader 
             eyebrow="Tarifa clara" 
             title="Cuánto cuesta."
-            description="Cobramos por semana, según el plan y la zona. El monto exacto te lo confirmamos por WhatsApp antes de empezar."
+            description="Cobramos por semana, según el plan y la zona. El monto exacto te lo confirmamos por WhatsApp antes de empezar. Sin cargos ocultos ni sorpresas por aumento de demanda. Tarifa fija semanal acordada de antemano."
           />
         </ScrollReveal>
 
