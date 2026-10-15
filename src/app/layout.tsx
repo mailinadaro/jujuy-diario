@@ -5,8 +5,38 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adaro Viajes | Chofer Privado en Jujuy",
-  description: "Consultá por traslados coordinados para ir a trabajar al centro de San Salvador de Jujuy.",
+  metadataBase: new URL("https://www.adaroviajes.com"),
+  title: "Chofer privado en Jujuy para ir al centro | Adaro Viajes",
+  description: "Chofer privado para ir y volver del centro de San Salvador de Jujuy, con horario fijo y tarifa semanal acordada. Consultá tu recorrido por WhatsApp.",
+  alternates: {
+    canonical: "https://www.adaroviajes.com",
+  },
+  openGraph: {
+    title: "Chofer privado en Jujuy para ir al centro | Adaro Viajes",
+    description: "Chofer privado para ir y volver del centro de San Salvador de Jujuy, con horario fijo y tarifa semanal acordada. Consultá tu recorrido por WhatsApp.",
+    type: "website",
+    url: "https://www.adaroviajes.com",
+    siteName: "Adaro Viajes",
+    locale: "es_AR",
+    images: [
+      {
+        url: "/heroCronos03.png",
+        width: 1672,
+        height: 940,
+        alt: "Chofer privado en San Salvador de Jujuy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chofer privado en Jujuy para ir al centro | Adaro Viajes",
+    description: "Chofer privado para ir y volver del centro de San Salvador de Jujuy, con horario fijo y tarifa semanal acordada. Consultá tu recorrido por WhatsApp.",
+    images: ["/heroCronos03.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -15,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es-AR" className="scroll-smooth">
       <head>
         {/* FontAwesome Icons */}
         <link 

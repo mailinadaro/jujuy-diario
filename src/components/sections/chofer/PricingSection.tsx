@@ -73,7 +73,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
                   href={getWhatsAppUrl(p.title)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full py-3 rounded-xl font-semibold text-sm transition-all shadow-sm cursor-pointer ${
+                  className={`w-full min-h-11 px-4 py-3 inline-flex items-center justify-center text-center rounded-xl font-semibold text-sm transition-all shadow-sm cursor-pointer ${
                     p.popular 
                       ? 'bg-amber-500 hover:bg-amber-400 text-slate-950' 
                       : 'bg-slate-900 hover:bg-slate-800 text-white'

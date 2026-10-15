@@ -6,9 +6,11 @@ interface CtaProps {
   whatsappNumber: string;
 }
 
+const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
+
 export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
-  const text = encodeURIComponent("Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.");
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const directWhatsAppUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
     <section className="relative py-28 lg:py-36 text-white text-center overflow-hidden">
@@ -42,12 +44,25 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium px-8 py-4 rounded-xl shadow-xl transition-all inline-flex items-center space-x-3 text-lg cursor-pointer"
+            aria-label="Consultar mi recorrido por WhatsApp"
+            className="bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-medium px-8 py-4 min-h-11 w-full sm:w-auto rounded-xl shadow-xl transition-all inline-flex items-center justify-center space-x-3 text-lg cursor-pointer"
           >
             <i className="fa-brands fa-whatsapp text-2xl"></i>
-            <span>Consultar disponibilidad por WhatsApp</span>
+            <span>Empezar mi consulta por WhatsApp</span>
           </a>
         </div>
+
+        <p className="text-slate-300 text-sm font-light">
+          ¿Preferís escribirnos directo?{' '}
+          <a
+            href={directWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center text-white hover:text-amber-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 underline underline-offset-4 transition-colors"
+          >
+            WhatsApp {whatsappNumber}
+          </a>
+        </p>
       </MainContainer>
     </section>
   );

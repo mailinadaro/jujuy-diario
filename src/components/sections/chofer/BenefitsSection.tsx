@@ -6,7 +6,7 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 export const BenefitsSection = () => {
   const benefits = [
     { icon: 'fa-calendar-days', title: '1. Horarios coordinados', desc: 'Organizá tus traslados con anticipación y constancia, adaptados a tus entradas y salidas según disponibilidad operativa.' },
-    { icon: 'fa-file-invoice-dollar', title: '2. Tarifa acordada previamente', desc: 'Conocé el precio exacto de tu recorrido antes de confirmar cada semana o mes, sin sorpresas ni tarifas variables imprevistas.' },
+    { icon: 'fa-file-invoice-dollar', title: '2. Tarifa acordada previamente', desc: 'Conocé el precio exacto de tu recorrido antes de confirmar cada semana, sin sorpresas ni tarifas variables imprevistas.' },
     { icon: 'fa-comments', title: '3. Atención directa', desc: 'Resolvé tus consultas ágilmente por WhatsApp, con trato personalizado, claro y sin aplicaciones complejas ni esperas.' }
   ];
 
