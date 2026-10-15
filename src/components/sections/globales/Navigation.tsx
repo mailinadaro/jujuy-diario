@@ -28,12 +28,21 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
     window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isOpen]);
+
   const navLinks = [
     { label: 'Beneficios', href: '#beneficios' },
     { label: 'Cómo funciona', href: '#como-funciona' },
     { label: 'Quién te lleva', href: '#quien-te-lleva' },
-    { label: 'Tarifas', href: '#tarifas' },
-    { label: 'Cobertura', href: '#cobertura' },
+    { label: 'Tarifas y Zonas', href: '#zonas-cobertura' },
     { label: 'Preguntas', href: '#faq' },
   ];
 
@@ -113,27 +122,36 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
 
       {/* Menú Desplegable Móvil */}
       {isOpen && (
-        <div className="lg:hidden bg-slate-950/95 backdrop-blur-xl border-b border-slate-800/80 px-6 pt-4 pb-8 space-y-4 text-center animate-in fade-in slide-in-from-top-4 duration-200">
-          {navLinks.map((item) => (
-            <a 
-              key={item.href}
-              href={item.href} 
-              onClick={(e) => scrollToSection(e, item.href)} 
-              className="block py-2.5 text-xs tracking-widest uppercase text-slate-200 hover:text-amber-400 font-light border-b border-slate-900 cursor-pointer"
-            >
-              {item.label}
-            </a>
-          ))}
-          <div className="pt-3">
-            <button 
-              onClick={() => openWhatsApp('Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.')} 
-              className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium py-3 rounded-lg flex items-center justify-center space-x-2 text-xs uppercase tracking-widest shadow-lg transition-colors cursor-pointer"
-            >
-              <i className="fa-brands fa-whatsapp text-base"></i>
-              <span>Escribir por WhatsApp</span>
-            </button>
+        <>
+          {/* Backdrop a pantalla completa para evitar tocar el fondo y bloquear la visión del Hero */}
+          <div 
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 top-16 bg-slate-950/80 backdrop-blur-sm z-30 lg:hidden animate-in fade-in duration-200"
+            aria-hidden="true"
+          />
+
+          <div className="relative z-40 lg:hidden bg-slate-950/98 backdrop-blur-xl border-b border-slate-800/80 px-6 pt-4 pb-8 space-y-4 text-center shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+            {navLinks.map((item) => (
+              <a 
+                key={item.href}
+                href={item.href} 
+                onClick={(e) => scrollToSection(e, item.href)} 
+                className="block py-3 text-xs tracking-widest uppercase text-slate-200 hover:text-amber-400 font-light border-b border-slate-900 cursor-pointer"
+              >
+                {item.label}
+              </a>
+            ))}
+            <div className="pt-2">
+              <button 
+                onClick={() => openWhatsApp('Hola, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.')} 
+                className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium py-3.5 rounded-xl flex items-center justify-center space-x-2 text-xs uppercase tracking-widest shadow-lg transition-colors cursor-pointer"
+              >
+                <i className="fa-brands fa-whatsapp text-base"></i>
+                <span>Escribir por WhatsApp</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

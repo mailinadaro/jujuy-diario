@@ -14,6 +14,8 @@ interface ZoneInfo {
   scope: string;
   priceNumber: string;
   priceUnit: string;
+  priceWeekly2Trips: string;
+  priceWeekly4Trips: string;
   barrios: string[];
   theme: {
     text: string;
@@ -41,6 +43,8 @@ const zonasCubiertas: ZoneInfo[] = [
     scope: 'Sur y mayor distancia',
     priceNumber: '$8.000',
     priceUnit: 'por viaje',
+    priceWeekly2Trips: '$80.000',
+    priceWeekly4Trips: '$160.000',
     barrios: ['Alto Comedero', 'Malvinas', '13 de Junio', 'Antártida'],
     theme: {
       text: 'text-amber-400',
@@ -58,6 +62,8 @@ const zonasCubiertas: ZoneInfo[] = [
     scope: 'Periferia Norte y Sur',
     priceNumber: '$7.000',
     priceUnit: 'por viaje',
+    priceWeekly2Trips: '$70.000',
+    priceWeekly4Trips: '$140.000',
     barrios: ['La Viña', 'Los Perales', 'El Huayco', '23 de Agosto', 'Alto Padilla', 'San Pedrito', 'Chango Más', 'San Martín', 'Belgrano'],
     theme: {
       text: 'text-sky-400',
@@ -75,6 +81,8 @@ const zonasCubiertas: ZoneInfo[] = [
     scope: 'Centro y accesos directos',
     priceNumber: '$6.000',
     priceUnit: 'por viaje',
+    priceWeekly2Trips: '$60.000',
+    priceWeekly4Trips: '$120.000',
     barrios: ['Ciudad de Nieva', 'Mariano Moreno', 'B° Kennedy', 'Cuyaya', 'Gorriti'],
     theme: {
       text: 'text-emerald-400',
@@ -108,13 +116,19 @@ const zoneMarkers: MapMarker[] = [
   { id: 'antartida', label: 'Antártida / 13 de Junio', zone: 'Zona 1', x: 74, y: 90 },
 ];
 
+type PlanMode = '2trips' | '4trips';
+
 export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222' }) => {
   const [selectedZoneId, setSelectedZoneId] = useState<string>('Zona 1');
+  const [planMode, setPlanMode] = useState<PlanMode>('2trips');
   const [hoveredMarker, setHoveredMarker] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalZoom, setModalZoom] = useState(1);
 
   const activeZone = zonasCubiertas.find((z) => z.id === selectedZoneId) || zonasCubiertas[0];
+
+  const currentWeeklyPrice = planMode === '2trips' ? activeZone.priceWeekly2Trips : activeZone.priceWeekly4Trips;
+  const currentPlanLabel = planMode === '2trips' ? 'Plan 2 viajes diarios (ida y vuelta)' : 'Plan 4 viajes diarios (horario cortado)';
 
   // Listener para la tecla Escape y bloqueo de scroll al abrir el modal
   useEffect(() => {
@@ -134,9 +148,9 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
     };
   }, [isModalOpen]);
 
-  // Mensaje y URL dinámico e inteligente según la zona seleccionada
+  // Mensaje y URL dinámico e inteligente según la zona y modalidad seleccionada
   const smartWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hola, quiero consultar disponibilidad y traslados para ${activeZone.name} (${activeZone.scope}). Mi barrio o dirección exacta es: `
+    `Hola Sergio, quiero consultar disponibilidad para el ${currentPlanLabel} en ${activeZone.name} (${currentWeeklyPrice}/semana). Mi barrio o dirección exacta es: `
   )}`;
 
   /**
@@ -267,6 +281,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-1.5 rounded-2xl bg-slate-950/70 border border-slate-800 shadow-xl max-w-3xl">
               {zonasCubiertas.map((z) => {
                 const isSelected = selectedZoneId === z.id;
+                const weeklyForZone = planMode === '2trips' ? z.priceWeekly2Trips : z.priceWeekly4Trips;
                 return (
                   <button
                     key={z.id}
@@ -284,6 +299,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                     </div>
                     <span className={`text-xs font-bold tracking-tight ${isSelected ? z.theme.text : 'text-slate-400'}`}>
                       {z.priceNumber} <span className="text-[10px] font-normal text-slate-400">{z.priceUnit}</span>
+                      <span className="text-[10px] font-normal text-slate-400"> • {weeklyForZone}/sem</span>
                     </span>
                   </button>
                 );
@@ -300,8 +316,8 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                 <div className={`p-6 sm:p-8 rounded-2xl border ${activeZone.theme.activeBorder} bg-slate-800/90 shadow-xl space-y-6`}>
                   
                   {/* Encabezado y Tarifa Destacada */}
-                  <div className="border-b border-slate-700/60 pb-5">
-                    <div className="flex items-center justify-between gap-3 mb-2">
+                  <div className="border-b border-slate-700/60 pb-5 space-y-4">
+                    <div className="flex items-center justify-between gap-3 mb-1">
                       <div className="flex items-center gap-2">
                         <span className={`w-3 h-3 rounded-full ${activeZone.theme.pinBg}`}></span>
                         <h3 className="text-xl font-bold text-white tracking-wide">{activeZone.name}</h3>
@@ -310,15 +326,70 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                         {activeZone.barrios.length} barrios cubiertos
                       </span>
                     </div>
-                    <p className="text-xs text-slate-400 font-light mb-4">{activeZone.scope}</p>
+                    <p className="text-xs text-slate-400 font-light">{activeZone.scope}</p>
 
-                    <div className="flex items-baseline gap-2">
-                      <span className={`text-3xl sm:text-4xl font-light tracking-tight ${activeZone.theme.text}`}>
-                        {activeZone.priceNumber}
-                      </span>
-                      <span className="text-xs text-slate-400 font-light">
-                        {activeZone.priceUnit} hacia el centro (lunes a viernes)
-                      </span>
+                    {/* Selector de Modalidad (Plan 2 viajes vs Plan 4 viajes) */}
+                    <div className="pt-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium">
+                          Modalidad de traslado:
+                        </span>
+                        <span className="text-[10px] text-amber-400 font-medium">
+                          {planMode === '2trips' ? '10 viajes/semana' : '20 viajes/semana'}
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 bg-slate-950/80 p-1.5 rounded-xl border border-slate-700/80">
+                        <button
+                          type="button"
+                          onClick={() => setPlanMode('2trips')}
+                          className={`py-2 px-3 rounded-lg text-xs font-semibold transition-all flex flex-col items-center justify-center text-center cursor-pointer ${
+                            planMode === '2trips'
+                              ? 'bg-amber-500 text-slate-950 shadow-md ring-1 ring-amber-400 font-bold'
+                              : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
+                          }`}
+                        >
+                          <span>Plan 2 viajes / día</span>
+                          <span className={`text-[10px] ${planMode === '2trips' ? 'text-slate-950/80 font-medium' : 'text-slate-500'}`}>
+                            Ida y vuelta laboral
+                          </span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setPlanMode('4trips')}
+                          className={`py-2 px-3 rounded-lg text-xs font-semibold transition-all flex flex-col items-center justify-center text-center cursor-pointer ${
+                            planMode === '4trips'
+                              ? 'bg-amber-500 text-slate-950 shadow-md ring-1 ring-amber-400 font-bold'
+                              : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
+                          }`}
+                        >
+                          <span>Plan 4 viajes / día</span>
+                          <span className={`text-[10px] ${planMode === '4trips' ? 'text-slate-950/80 font-medium' : 'text-slate-500'}`}>
+                            Horario cortado
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Desglose de Tarifas */}
+                    <div className="flex flex-col gap-2.5 pt-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className={`text-3xl sm:text-4xl font-light tracking-tight ${activeZone.theme.text}`}>
+                          {activeZone.priceNumber}
+                        </span>
+                        <span className="text-xs text-slate-400 font-light">
+                          {activeZone.priceUnit} hacia el centro (lunes a viernes)
+                        </span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-300 bg-slate-950/90 p-3 rounded-xl border border-slate-700/60">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                          <span className="text-slate-400 font-normal">Tarifa semanal fija:</span>
+                          <strong className="text-white text-sm font-semibold">{currentWeeklyPrice}</strong>
+                        </div>
+                        <span className="text-[11px] text-amber-400/90 font-medium">
+                          {planMode === '2trips' ? '10 viajes (ida y vuelta)' : '20 viajes (horario cortado)'}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -341,7 +412,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
 
                   {/* Nota aclaratoria */}
                   <p className="text-xs text-slate-400 font-light leading-relaxed border-l-2 border-slate-600 pl-3 py-1">
-                    ¿Tu barrio no figura en la lista? Consultanos igualmente por WhatsApp: confirmamos recorridos y horarios fijos antes de acordar el servicio.
+                    ¿Tu barrio no figura en la lista o tenés turnos rotativos? Consultanos por WhatsApp: coordinamos recorridos y horarios personalizados antes de acordar el servicio.
                   </p>
 
                   {/* ÚNICO Botón Inteligente de WhatsApp */}
@@ -353,7 +424,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                     className="w-full min-h-12 bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-semibold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center space-x-2.5 text-sm shadow-md cursor-pointer group"
                   >
                     <i className="fa-brands fa-whatsapp text-lg transition-transform group-hover:scale-110"></i>
-                    <span>Consultar disponibilidad para {activeZone.name} ({activeZone.priceNumber})</span>
+                    <span>Consultar {planMode === '2trips' ? 'Plan 2 viajes' : 'Plan 4 viajes'} ({currentWeeklyPrice}/sem)</span>
                   </a>
 
                 </div>

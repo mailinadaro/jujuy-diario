@@ -58,11 +58,11 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Consultar si llegan a mi barrio por WhatsApp"
-              className="w-full sm:w-auto min-h-11 bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-medium px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-3 text-base cursor-pointer"
+              aria-label="Consultar mi recorrido por WhatsApp"
+              className="w-full sm:w-auto min-h-12 bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-semibold px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-3 text-base cursor-pointer group"
             >
-              <i className="fa-brands fa-whatsapp text-2xl"></i>
-              <span>Quiero ver si llegan a mi barrio</span>
+              <i className="fa-brands fa-whatsapp text-2xl transition-transform group-hover:scale-110"></i>
+              <span>Consultar mi recorrido por WhatsApp</span>
             </a>
           </div>
 
