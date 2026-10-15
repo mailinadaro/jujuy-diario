@@ -28,7 +28,7 @@ export const FounderSection = () => {
           {/* Columna de contenido ubicada a la derecha */}
           <div className="lg:col-span-6 xl:col-span-5 text-left space-y-6">
             <ScrollReveal>
-              <div className="space-y-4 bg-slate-950/80 p-8 sm:p-10 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-2xl">
+              <div className="space-y-4 bg-slate-950/50 p-8 sm:p-10 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-2xl">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-slate-900/90 text-amber-400 border border-amber-500/30 shadow-sm">
                   <i className="fa-solid fa-user-tie"></i> Quién te lleva
                 </span>
