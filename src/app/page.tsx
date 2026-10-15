@@ -23,10 +23,10 @@ export default function Page() {
       <ProblemSection />
       <BenefitsSection />
       <HowItWorksSection whatsappNumber={whatsappNumber} />
-      <CoverageSection whatsappNumber={whatsappNumber} />
       <FounderSection />
-      <Zones whatsappNumber={whatsappNumber} />
       <PricingSection whatsappNumber={whatsappNumber} />
+      <CoverageSection whatsappNumber={whatsappNumber} />
+      <Zones whatsappNumber={whatsappNumber} />
       <FaqSection />
       <CtaSection whatsappNumber={whatsappNumber} />
       <Footer />
