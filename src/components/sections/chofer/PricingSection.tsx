@@ -17,7 +17,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
     {
       title: 'Plan 2 viajes diarios',
       subtitle: 'Ida y vuelta',
-      priceRange: 'De $[X] a $[X]',
+      priceRange: 'De $60 mil a $80 mil',
       period: 'por semana, según tu zona',
       desc: 'Ideal para la rutina de lunes a viernes con horario fijo de entrada y salida al centro.',
       popular: false
@@ -25,7 +25,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
     {
       title: 'Plan 4 viajes diarios',
       subtitle: 'Horario cortado',
-      priceRange: 'De $[X] a $[X]',
+      priceRange: 'De $120 mil a $160 mil',
       period: 'por semana, según tu zona',
       desc: 'Ida y vuelta a la mañana e ida y vuelta a la tarde para comer en casa al mediodía.',
       popular: true
@@ -40,6 +40,8 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
     }
   ];
 
+  
+
   return (
     <section id="precio" className="py-24 bg-white">
       <MainContainer>
@@ -47,7 +49,7 @@ export const PricingSection: React.FC<PricingProps> = ({ whatsappNumber }) => {
           <SectionHeader 
             eyebrow="Tarifa clara" 
             title="Cuánto cuesta."
-            description="Cobramos por semana, según el plan que elijas. Valores actualizados. El monto exacto te lo confirmamos por WhatsApp antes de empezar, sin cargos ocultos."
+            description="Cobramos por semana, según el plan y la zona. El monto exacto te lo confirmamos por WhatsApp antes de empezar."
           />
         </ScrollReveal>
 

@@ -10,7 +10,6 @@ const whatsappMessage = 'Hola, quiero consultar un recorrido.\n\nBarrio: \nDirec
 
 export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  const directWhatsAppUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
     <section className="relative py-28 lg:py-36 text-white text-center overflow-hidden">
@@ -52,17 +51,6 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
           </a>
         </div>
 
-        <p className="text-slate-300 text-sm font-light">
-          ¿Preferís escribirnos directo?{' '}
-          <a
-            href={directWhatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center text-white hover:text-amber-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 underline underline-offset-4 transition-colors"
-          >
-            WhatsApp {whatsappNumber}
-          </a>
-        </p>
       </MainContainer>
     </section>
   );

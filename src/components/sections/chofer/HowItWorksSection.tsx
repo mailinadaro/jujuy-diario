@@ -10,7 +10,7 @@ interface HowItWorksProps {
 export const HowItWorksSection: React.FC<HowItWorksProps> = ({ whatsappNumber }) => {
   const steps = [
     { num: 1, icon: 'fa-map-location-dot', title: 'Contanos tu recorrido', desc: 'Escribinos por WhatsApp con tu barrio, la dirección de tu trabajo y tus horarios.' },
-    { num: 2, icon: 'fa-clipboard-check', title: 'Verificamos disponibilidad', desc: 'Revisamos si podemos cubrir tu trayecto con nuestra agenda. Te respondemos [en el día / en X horas].' }, // TODO: definir el tiempo de respuesta.
+    { num: 2, icon: 'fa-clipboard-check', title: 'Verificamos disponibilidad', desc: 'Revisamos si podemos cubrir tu trayecto con nuestra agenda. Te respondemos en el día.' }, // TODO: definir el tiempo de respuesta.
     { num: 3, icon: 'fa-handshake', title: 'Recibís tu tarifa', desc: 'Si el servicio es viable, te pasamos el valor exacto y coordinamos el primer viaje.' }
   ];
 
