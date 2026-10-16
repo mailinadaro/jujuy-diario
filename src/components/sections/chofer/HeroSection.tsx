@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroProps> = ({ whatsappNumber }) => {
       {/* Imagen de fondo a todo el alto y ancho con tratamiento editorial oscuro */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/heroCronos03.png" 
+          src="/autoFiat.jpg" 
           alt="Chofer privado en San Salvador de Jujuy" 
           fill 
           priority

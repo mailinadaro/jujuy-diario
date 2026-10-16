@@ -17,7 +17,7 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
       {/* Fondo de alta gama con imagen de territorio y gradientes editoriales */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/autoFiat.jpg" 
+          src="/cronosFiat.jpg" 
           alt="Fiat Cronos 2024 del servicio de Adaro Viajes" 
           fill 
           className="object-cover object-center brightness-50"
