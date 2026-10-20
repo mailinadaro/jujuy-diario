@@ -1,7 +1,12 @@
 {
   "redirects": [
     {
-      "source": "/((?!index$|^$).*)",
+      "source": "/contact",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/category",
       "destination": "/",
       "permanent": true
     }
