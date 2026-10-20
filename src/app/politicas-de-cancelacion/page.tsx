@@ -9,6 +9,16 @@ import { buildWhatsAppUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Condiciones del servicio y políticas de cancelación | Adaro Viajes',
   description: 'Términos, políticas de cancelación, compromisos del chofer y condiciones operativas de los traslados diarios en San Salvador de Jujuy.',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   alternates: {
     canonical: 'https://www.adaroviajes.com/politicas-de-cancelacion',
   },

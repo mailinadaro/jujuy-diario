@@ -59,6 +59,7 @@ export const Footer = () => {
           <div>
             <a
               href="/politicas-de-cancelacion"
+              rel="nofollow"
               className="inline-flex min-h-11 items-center text-slate-400 hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 transition-colors font-light underline underline-offset-4"
             >
               Políticas de cancelación y condiciones del servicio
