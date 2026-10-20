@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,8 +51,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gtmId = process.env.GTM_TAG;
+
   return (
     <html lang="es-AR" className="scroll-smooth">
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <head>
         {/* FontAwesome Icons */}
         <link 

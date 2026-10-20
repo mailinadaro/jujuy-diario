@@ -9,6 +9,11 @@
       "source": "/category",
       "destination": "/",
       "permanent": true
+    }, 
+    {
+      "source": "/tag/facebook",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
