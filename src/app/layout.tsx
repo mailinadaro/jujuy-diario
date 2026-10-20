@@ -55,7 +55,7 @@ export default function RootLayout({
 
   return (
     <html lang="es-AR" className="scroll-smooth">
-      <GoogleTagManager gtmId={gtmId} /> 
+      <GoogleTagManager gtmId="GTM-TZKLB94Z" /> 
       <head>
         {/* FontAwesome Icons */}
         <link 
