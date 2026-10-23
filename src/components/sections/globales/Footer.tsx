@@ -1,13 +1,26 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import data from '@/data/chofer-privado.json';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
 
 const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
 const whatsappUrl = buildWhatsAppUrl(whatsappMessage, data.whatsapp);
 
 export const Footer = () => {
+  const { logWhatsAppClick } = useAdaroAnalytics();
+
+  const handleWhatsAppClick = () => {
+    logWhatsAppClick({
+      location: 'footer',
+      buttonText: data.whatsapp,
+      templateName: 'recorrido_laboral',
+      targetPhone: data.whatsappRaw || '543516149222',
+    });
+  };
+
   return (
     <footer aria-label="Pie de página de Adaro Viajes" className="bg-slate-950 border-t border-slate-900 text-slate-400 py-16 pb-20 text-xs tracking-wide">
       <MainContainer>
@@ -42,6 +55,7 @@ export const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Consultar un recorrido por WhatsApp"
+                onClick={handleWhatsAppClick}
                 className="inline-flex min-h-11 items-center text-slate-300 hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 transition-colors underline underline-offset-4"
               >
                 {data.whatsapp}

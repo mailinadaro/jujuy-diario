@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
 
 interface NavigationProps {
   whatsappNumber?: string;
@@ -14,6 +15,7 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { logWhatsAppClick } = useAdaroAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +26,13 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const openWhatsApp = (msg: string) => {
+  const openWhatsApp = (msg: string, location: 'navbar_desktop' | 'navbar_mobile') => {
+    logWhatsAppClick({
+      location,
+      buttonText: 'Escribir por WhatsApp',
+      templateName: 'consulta_disponibilidad',
+      targetPhone: whatsappNumber || '543516149222',
+    });
     window.open(buildWhatsAppUrl(msg, whatsappNumber), '_blank');
   };
 
@@ -100,7 +108,7 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
         {/* CTA Desktop */}
         <div className="hidden lg:block">
           <button 
-            onClick={() => openWhatsApp('Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.')} 
+            onClick={() => openWhatsApp('Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.', 'navbar_desktop')} 
             className="border border-amber-500/40 hover:border-amber-400 bg-amber-500/10 hover:bg-amber-500 text-amber-300 hover:text-slate-950 font-medium px-5 py-2.5 rounded-lg tracking-wider transition-all flex items-center space-x-2 text-xs uppercase shadow-sm cursor-pointer group"
           >
             <i className="fa-brands fa-whatsapp text-sm text-amber-400 group-hover:text-slate-950 transition-colors"></i>
@@ -143,7 +151,7 @@ export const Navigation: React.FC<NavigationProps> = ({ whatsappNumber }) => {
             ))}
             <div className="pt-2">
               <button 
-                onClick={() => openWhatsApp('Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.')} 
+                onClick={() => openWhatsApp('Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.', 'navbar_mobile')} 
                 className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-medium py-3.5 rounded-xl flex items-center justify-center space-x-2 text-xs uppercase tracking-widest shadow-lg transition-colors cursor-pointer"
               >
                 <i className="fa-brands fa-whatsapp text-base"></i>

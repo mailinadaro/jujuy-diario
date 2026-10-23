@@ -1,14 +1,17 @@
+'use client';
 import React from 'react';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
 
 interface HowItWorksProps {
   whatsappNumber?: string;
 }
 
 export const HowItWorksSection: React.FC<HowItWorksProps> = ({ whatsappNumber }) => {
+  const { logWhatsAppClick } = useAdaroAnalytics();
   const steps = [
     { num: 1, icon: 'fa-map-location-dot', title: 'Contanos tu recorrido', desc: 'Escribinos por WhatsApp con tu barrio, la dirección de tu trabajo y tus horarios.' },
     { num: 2, icon: 'fa-clipboard-check', title: 'Verificamos disponibilidad', desc: 'Revisamos si podemos cubrir tu trayecto con nuestra agenda. Te respondemos en el día.' }, // TODO: definir el tiempo de respuesta.
@@ -17,6 +20,15 @@ export const HowItWorksSection: React.FC<HowItWorksProps> = ({ whatsappNumber })
 
   const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: \nDirección de mi trabajo: \nHorario de entrada: \nHorario de salida: ';
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage, whatsappNumber);
+
+  const handleWhatsAppClick = () => {
+    logWhatsAppClick({
+      location: 'how_it_works',
+      buttonText: 'Coordinar mi traslado por WhatsApp',
+      templateName: 'recorrido_laboral',
+      targetPhone: whatsappNumber || '543516149222',
+    });
+  };
 
   return (
     <section id="como-funciona" className="py-24 lg:py-32 bg-white border-t border-slate-100">
@@ -53,6 +65,7 @@ export const HowItWorksSection: React.FC<HowItWorksProps> = ({ whatsappNumber })
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Coordinar mi traslado por WhatsApp"
+              onClick={handleWhatsAppClick}
               className="bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-semibold px-8 py-4 min-h-12 rounded-xl shadow-md hover:shadow-lg transition-all inline-flex items-center space-x-3 text-base cursor-pointer group"
             >
               <i className="fa-brands fa-whatsapp text-2xl transition-transform group-hover:scale-110"></i>

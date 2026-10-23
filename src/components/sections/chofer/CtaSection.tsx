@@ -1,7 +1,9 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
 
 interface CtaProps {
   whatsappNumber?: string;
@@ -11,6 +13,16 @@ const whatsappMessage = 'Hola Sergio, quiero consultar un recorrido.\n\nBarrio: 
 
 export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage, whatsappNumber);
+  const { logWhatsAppClick } = useAdaroAnalytics();
+
+  const handleWhatsAppClick = () => {
+    logWhatsAppClick({
+      location: 'cta_banner',
+      buttonText: 'Empezar mi consulta por WhatsApp',
+      templateName: 'recorrido_laboral',
+      targetPhone: whatsappNumber || '543516149222',
+    });
+  };
 
   return (
     <section className="relative py-28 lg:py-36 text-white text-center overflow-hidden">
@@ -47,6 +59,7 @@ export const CtaSection: React.FC<CtaProps> = ({ whatsappNumber }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Consultar mi recorrido por WhatsApp"
+            onClick={handleWhatsAppClick}
             className="bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-medium px-8 py-4 min-h-11 w-full sm:w-auto rounded-xl shadow-xl transition-all inline-flex items-center justify-center space-x-3 text-lg cursor-pointer"
           >
             <i className="fa-brands fa-whatsapp text-2xl"></i>

@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
 
 interface WhatsAppButtonProps {
   whatsappNumber?: string;
@@ -8,10 +9,11 @@ interface WhatsAppButtonProps {
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }) => {
   const [footerVisible, setFooterVisible] = useState(false);
-  const whatsappUrl = buildWhatsAppUrl(
-    "Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.",
-    whatsappNumber
-  );
+  const { logWhatsAppClick } = useAdaroAnalytics();
+
+  const defaultMessage = "Hola Sergio, quiero consultar por disponibilidad de traslados y tarifa para mi recorrido al centro.";
+  const whatsappUrl = buildWhatsAppUrl(defaultMessage, whatsappNumber);
+
   const whatsappColors = {
     '--whatsapp-green': '#25D366',
     '--whatsapp-green-hover': '#1EBE5D',
@@ -33,12 +35,22 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
     return () => footerObserver.disconnect();
   }, []);
 
+  const handleClick = () => {
+    logWhatsAppClick({
+      location: 'sticky_float',
+      buttonText: 'Escribir por WhatsApp',
+      templateName: 'consulta_disponibilidad',
+      targetPhone: whatsappNumber || '543516149222',
+    });
+  };
+
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp a Adaro Viajes"
+      onClick={handleClick}
       style={whatsappColors}
       aria-hidden={footerVisible}
       tabIndex={footerVisible ? -1 : 0}

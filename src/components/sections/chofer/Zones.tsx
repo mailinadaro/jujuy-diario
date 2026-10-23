@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { MainContainer } from '@/components/layout/MainContainer';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { useAdaroAnalytics } from '@/hooks/useAdaroAnalytics';
+import { AdaroZoneId } from '@/types/analytics';
 
 interface CoverageProps {
   whatsappNumber?: string;
@@ -125,6 +127,7 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
   const [hoveredMarker, setHoveredMarker] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalZoom, setModalZoom] = useState(1);
+  const { logWhatsAppClick } = useAdaroAnalytics();
 
   const activeZone = zonasCubiertas.find((z) => z.id === selectedZoneId) || zonasCubiertas[0];
 
@@ -450,6 +453,16 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Consultar tarifa para ${activeZone.name} por WhatsApp`}
+                    onClick={() => {
+                      logWhatsAppClick({
+                        location: 'pricing_card',
+                        buttonText: `Consultar ${planMode === '2trips' ? 'Plan 2 viajes' : 'Plan 4 viajes'} (${currentWeeklyPrice}/sem)`,
+                        zone: activeZone.name as AdaroZoneId,
+                        plan: planMode,
+                        templateName: 'cotizacion_zona',
+                        targetPhone: whatsappNumber,
+                      });
+                    }}
                     className="w-full min-h-12 bg-amber-500 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 text-slate-950 font-semibold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center space-x-2.5 text-sm shadow-md cursor-pointer group"
                   >
                     <i className="fa-brands fa-whatsapp text-lg transition-transform group-hover:scale-110"></i>
@@ -552,6 +565,16 @@ export const Zones: React.FC<CoverageProps> = ({ whatsappNumber = '543516149222'
               href={smartWhatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                logWhatsAppClick({
+                  location: 'pricing_modal',
+                  buttonText: 'Consultar por WhatsApp',
+                  zone: activeZone.name as AdaroZoneId,
+                  plan: planMode,
+                  templateName: 'cotizacion_zona',
+                  targetPhone: whatsappNumber,
+                });
+              }}
               className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-4 py-2 rounded-xl transition-all flex items-center space-x-2 text-xs cursor-pointer shadow-sm"
             >
               <i className="fa-brands fa-whatsapp text-sm"></i>
